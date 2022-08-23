@@ -2,7 +2,7 @@ package net.eshin.sql.utils.sqlrunner;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
-public class ArgumentManager {
+public final class ArgumentManager {
 
 	private final SQLServerDataSource dataSource;
 	private final String scriptFolder;

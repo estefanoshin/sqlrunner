@@ -2,7 +2,7 @@ package net.eshin.sql.utils.sqlrunner;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
-public class DataSourceUtil {
+class DataSourceUtil {
 
 	public static final class Builder {
 		private String user;

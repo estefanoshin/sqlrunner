@@ -15,7 +15,7 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
-public class CustomScriptRunner {
+public final class CustomScriptRunner {
 
 	final SQLServerDataSource ds;
 	final String scriptsFolder;

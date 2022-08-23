@@ -3,6 +3,8 @@ package net.eshin.sql.utils.sqlrunner;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
+import net.eshin.sql.utils.sqlrunner.controller.ScriptRunnerController;
+
 public class App {
 
 	static {
@@ -10,15 +12,8 @@ public class App {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, SQLException {
-		long initTime = System.currentTimeMillis();
 		final ArgumentManager manager = new ArgumentManager(args);
-		try {
-			new CustomScriptRunner(manager).runMyScripts();
-		} finally {
-			long finalTime = System.currentTimeMillis();
-			System.out.println("START: " + initTime);
-			System.out.println("END: " + finalTime);
-		}
+		ScriptRunnerController.runScripts(manager);
 	}
 
 	private static void printInfo() {
