@@ -25,12 +25,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>6.1.0.jre8</version>
-		</dependency>
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc4</artifactId>
@@ -55,6 +49,9 @@
 
 	<build>
 		<finalName>${artifactId}</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -68,22 +65,41 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
+				<artifactId>maven-shade-plugin</artifactId>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
 				<executions>
 					<execution>
-						<id>copy-dependencies</id>
-						<phase>validate</phase>
+						<phase>install</phase>
 						<goals>
-							<goal>copy-dependencies</goal>
+							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/lib</outputDirectory>
+							<artifactSet>
+								<includes>
+									<include>com.microsoft.sqlserver:sqljdbc4</include>
+									<include>org.mybatis:mybatis</include>
+									<include>commons-io:commons-io</include>
+								</includes>
+							</artifactSet>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+										<exclude>META-INF/*LICENSE*</exclude>
+										<exclude>META-INF/*NOTICE*</exclude>
+										<exclude>META-INF/services/</exclude>
+									</excludes>
+								</filter>
+							</filters>
 						</configuration>
 					</execution>
 				</executions>
@@ -102,20 +118,11 @@
 							<mainClass>net.eshin.sql.utils.sqlrunner.App</mainClass>
 						</manifest>
 						<manifestEntries>
-							<Class-Path>lib/</Class-Path>
+							<Class-Path>net.eshin.sql.utils.sqlrunner</Class-Path>
 						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
-
-		<resources>
-			<resource>
-				<directory>.</directory>
-				<includes>
-					<include>lib/*.jar</include>
-				</includes>
-			</resource>
-		</resources>
 	</build>
 </project>

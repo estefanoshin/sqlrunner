@@ -1,6 +1,7 @@
 package net.eshin.sql.utils.sqlrunner;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 import net.eshin.sql.utils.sqlrunner.controller.ScriptRunnerController;
@@ -11,7 +12,8 @@ public class App {
 		printInfo();
 	}
 
-	public static void main(String[] args) throws FileNotFoundException, SQLException, ClassNotFoundException {
+	public static void main(String[] args)
+			throws SQLException, ClassNotFoundException, UnsupportedEncodingException, IOException {
 		final ArgumentManager manager = new ArgumentManager(args);
 		ScriptRunnerController.runScripts(manager);
 	}
