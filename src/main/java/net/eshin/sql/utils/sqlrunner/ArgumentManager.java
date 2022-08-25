@@ -7,7 +7,7 @@ public final class ArgumentManager {
 	private final SQLServerDataSource dataSource;
 	private final String scriptFolder;
 
-	public ArgumentManager(final String[] args) {
+	public ArgumentManager(final String[] args) throws ClassNotFoundException {
 		final String user = System.getProperty("username");
 		final String password = System.getProperty("password");
 		final String server = System.getProperty("server");

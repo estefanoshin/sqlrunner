@@ -11,14 +11,14 @@ public class App {
 		printInfo();
 	}
 
-	public static void main(String[] args) throws FileNotFoundException, SQLException {
+	public static void main(String[] args) throws FileNotFoundException, SQLException, ClassNotFoundException {
 		final ArgumentManager manager = new ArgumentManager(args);
 		ScriptRunnerController.runScripts(manager);
 	}
 
 	private static void printInfo() {
 		System.out.println("Ingrese los parametro necesarios: ");
-		System.out.println("-Duser=\"DATABASE_USER\"");
+		System.out.println("-Dusername=\"DATABASE_USER\"");
 		System.out.println("-Dpassword=\"DATABASE_PASSWORD\"");
 		System.out.println("-Dserver=\"DATABASE_SERVER_IP\"");
 		System.out.println("-Dport=DATABSE_PORT_NUMBER");

@@ -36,7 +36,7 @@ class DataSourceUtil {
 			return this;
 		}
 
-		public SQLServerDataSource build() {
+		public SQLServerDataSource build() throws ClassNotFoundException {
 			if (user == null)
 				throw new RuntimeException("Insert a user");
 
@@ -70,7 +70,8 @@ class DataSourceUtil {
 		this.database = builder.database;
 	}
 
-	private SQLServerDataSource getDataSource() {
+	private SQLServerDataSource getDataSource() throws ClassNotFoundException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		SQLServerDataSource ds = new SQLServerDataSource();
 		ds.setUser(this.user);
 		ds.setPassword(this.password);
