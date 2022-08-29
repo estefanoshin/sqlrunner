@@ -6,7 +6,7 @@
 
 	<groupId>net.eshin.sql.utils</groupId>
 	<artifactId>sqlrunner</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>sqlrunner</name>
@@ -14,6 +14,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mssql-jdbc-version>10.2.1.jre8</mssql-jdbc-version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -25,10 +26,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc4</artifactId>
-			<version>4.0</version>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>${mssql-jdbc-version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -82,7 +84,7 @@
 						<configuration>
 							<artifactSet>
 								<includes>
-									<include>com.microsoft.sqlserver:sqljdbc4</include>
+									<include>com.microsoft.sqlserver:mssql-jdbc</include>
 									<include>org.mybatis:mybatis</include>
 									<include>commons-io:commons-io</include>
 								</includes>

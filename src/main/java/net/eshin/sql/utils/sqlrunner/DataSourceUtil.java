@@ -1,5 +1,7 @@
 package net.eshin.sql.utils.sqlrunner;
 
+import java.security.Security;
+
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
 class DataSourceUtil {
@@ -73,6 +75,7 @@ class DataSourceUtil {
 	private SQLServerDataSource getDataSource() throws ClassNotFoundException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		SQLServerDataSource ds = new SQLServerDataSource();
+		ds.setEncrypt(false);
 		ds.setUser(this.user);
 		ds.setPassword(this.password);
 		ds.setServerName(this.server);
